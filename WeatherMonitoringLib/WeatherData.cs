@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using WeatherMonitoringLib.Interfaces;
 
 namespace WeatherMonitoringLib
 {
@@ -7,7 +8,7 @@ namespace WeatherMonitoringLib
     /// Singleton class that acts as the subject in the Observer pattern, managing weather data.
     /// It collects weather data and notifies all registered observers when the data changes.
     /// </summary>
-    public class WeatherData
+    public class WeatherData: ISubject
     {
         private static WeatherData? instance;
         private List<IObserver> observers;
@@ -88,6 +89,11 @@ namespace WeatherMonitoringLib
             this.humidity = humidity;
             this.pressure = pressure;
             MeasurementsChanged();
+        }
+
+        internal void RegisterObserver(ForecastDisplay forecastDisplay)
+        {
+            throw new NotImplementedException();
         }
     }
 }

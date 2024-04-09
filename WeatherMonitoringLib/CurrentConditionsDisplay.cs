@@ -1,24 +1,25 @@
 using System;
+using WeatherMonitoringLib.Interfaces;
 
 namespace WeatherMonitoringLib
 {
-    //// <summary>
+    /// <summary>
     /// Displays current conditions. Acts as both an observer and a decorator to add additional info like date and time.
     /// </summary>
     public class CurrentConditionsDisplay : IObserver, IDisplay
     {
         private float temperature;
         private float humidity;
-        private WeatherData weatherData;
+        private ISubject weatherData;
 
         /// <summary>
         /// Initializes a new instance of the CurrentConditionsDisplay class, registering it as an observer of the specified WeatherData.
         /// </summary>
-        /// <param name="weatherData">The WeatherData object to observe.</param>
-        public CurrentConditionsDisplay(WeatherData weatherData)
+        /// <param name="weatherData">The ISubject object (WeatherData) to observe.</param>
+        public CurrentConditionsDisplay(ISubject weatherData)
         {
             this.weatherData = weatherData;
-            weatherData.RegisterObserver(this);
+            this.weatherData.RegisterObserver(this);
         }
 
         /// <summary>
